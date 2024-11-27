@@ -1,0 +1,48 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+header {
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+}
+
+footer {
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .timeline-week {
+    font-size: 12px;
+    padding: 3px;
+  }
+
+  .player-name {
+    width: 100px;
+    font-size: 12px;
+  }
+
+  .gantt-bar {
+    height: 20px;
+  }
+}
+
+button:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}

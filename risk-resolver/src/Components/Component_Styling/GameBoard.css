@@ -1,0 +1,129 @@
+.gantt-chart-container {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .timeline-week {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .timeline-week:last-child {
+    border-right: none;
+  }
+  
+  .gantt-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .gantt-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .player-name {
+    width: 150px;
+    text-align: left;
+    margin-right: 10px;
+    white-space: nowrap;
+  }
+  
+  .current-turn {
+    color: #28a745; /* Green color for the current turn */
+    font-weight: bold;
+  }
+  
+  .gantt-bar-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .gantt-bar {
+    height: 30px;
+    background-color: #007bff;
+    transition: width 0.5s;
+    border-radius: 4px;
+  }
+  
+  .scenario {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .slider {
+    width: 100%;
+    margin: 20px 0;
+  }
+  
+  .slider-value {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .button-group .btn {
+    flex: 1;
+    margin: 0 5px;
+  }
+  
+  .spin-btn {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .spin-btn:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  .next-round-btn {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .next-round-btn:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  .random-number {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .random-number.red {
+    color: red;
+  }
+  
+  .random-number.green {
+    color: green;
+  }
