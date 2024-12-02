@@ -8,11 +8,10 @@ function PlayerDashboard({ players, movePlayerForward, movePlayerBackward }) {
         <div key={index} className="player-controls">
           <div className="player-info">
             <div className={`player-name ${player.winner ? 'winner' : ''}`}>{player.name}</div>
-            <div className="player-turn">Turn: {player.turn}</div>
           </div>
           <div className="button-group">
             <button className="btn btn-sm btn-primary move-forward-btn" onClick={() => movePlayerForward(index)} disabled={player.winner}>Move Forward</button>
-            <button className="btn btn-sm btn-secondary move-backward-btn" onClick={() => movePlayerBackward(index)} disabled={player.position === 0 || player.winner}>Move Backward</button>
+            <button className="btn btn-sm btn-primary move-backward-btn" onClick={() => movePlayerBackward(index)} disabled={player.position === 0 || player.winner}>Move Backward</button>
           </div>
         </div>
       ))}

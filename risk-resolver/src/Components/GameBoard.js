@@ -9,9 +9,12 @@ function GameBoard({ players, weeks }) {
   const [randomNumber, setRandomNumber] = useState(null);
   const [resultColor, setResultColor] = useState('');
 
+  const pickScenario = () => {
+    setCurrentScenario(scenarios[Math.floor(Math.random() * scenarios.length)]);
+  }
+
   const nextRound = () => {
     setCurrentTurn((prevTurn) => (prevTurn % players.length) + 1);
-    setCurrentScenario(scenarios[Math.floor(Math.random() * scenarios.length)]);
     setRandomNumber(null); // Reset random number for the new round
     setResultColor(''); // Reset result color for the new round
   };
@@ -65,7 +68,8 @@ function GameBoard({ players, weeks }) {
       />
       <div className="slider-value">Selected Value: {sliderValue}</div>
       <div className="button-group">
-        <button className="btn btn-primary spin-btn" onClick={spinNumber}>Spin</button>
+        <button className = "btn btn-primary spin-btn" onClick={pickScenario}>Scenario</button>
+        <button className="btn btn-primary spin-btn" onClick={spinNumber}>Roll</button>
         <button className="btn btn-primary next-round-btn" onClick={nextRound}>Next Round</button>
       </div>
       {randomNumber !== null && (
