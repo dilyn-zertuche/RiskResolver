@@ -10,7 +10,7 @@ function App() {
   const [players, setPlayers] = useState([]);
   const [assigningTurns, setAssigningTurns] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
-  const [weeks, setWeeks] = useState(10);
+  const [weeks] = useState(10);
 
   const addPlayer = (name, level) => {
     const handicap = calculateHandicap(level);
@@ -77,7 +77,6 @@ function App() {
       <main className="container my-4">
         <div className="row">
           <div className="col-12">
-            <h2 className="text-center mb-4">Game Board</h2>
             {gameStarted ? (
               <>
                 <GameBoard players={players} weeks={weeks} />

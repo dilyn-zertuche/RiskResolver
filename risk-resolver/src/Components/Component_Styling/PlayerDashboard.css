@@ -58,6 +58,7 @@
   .move-backward-btn {
     background-color: #dc3545; /* Red color for the button */
     border-color: #dc3545; /* Red border color */
+    white-space: nowrap;
   }
   
   .move-backward-btn:hover {
