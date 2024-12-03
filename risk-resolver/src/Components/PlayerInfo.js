@@ -13,7 +13,7 @@ const PlayerInfo = ({ player }) => {
     <div className="card">
       <div className="card-body">
         <div className="d-flex align-items-center">
-          <h5 className="card-title mb-0">{player.name} {player.turn !== null && <span className="badge bg-primary ml-2">Turn: {player.turn}</span>}</h5>
+          <h5 className="card-title mb-0">{player.name}</h5>
           <FaInfoCircle className="ml-2 text-info" onClick={toggleDetails} style={{ cursor: 'pointer' }} />
         </div>
         {showDetails && (
