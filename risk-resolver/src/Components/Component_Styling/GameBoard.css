@@ -248,3 +248,14 @@ body.dark-mode {
   transform: translateX(-50%);
   white-space: nowrap;
 }
+
+.random-number {
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.random-number.rolling {
+  animation: none; /* Remove any existing animation */
+}

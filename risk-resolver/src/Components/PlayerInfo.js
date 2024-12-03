@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { FaInfoCircle } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Component_Styling/PlayerInfo.css';
 
-const PlayerInfo = ({ player }) => {
+const PlayerInfo = ({ player, removePlayer }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   const toggleDetails = () => {
@@ -10,7 +11,8 @@ const PlayerInfo = ({ player }) => {
   };
 
   return (
-    <div className="card">
+    <div className="card player-info">
+      <button className="remove-player-btn" onClick={removePlayer}>×</button>
       <div className="card-body">
         <div className="d-flex align-items-center">
           <h5 className="card-title mb-0">{player.name}</h5>

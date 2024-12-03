@@ -1,0 +1,19 @@
+/* PlayerInfo.css */
+.player-info {
+    position: relative;
+  }
+  
+  .remove-player-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+  }
+  
+  .remove-player-btn:hover {
+    color: darkred;
+  }

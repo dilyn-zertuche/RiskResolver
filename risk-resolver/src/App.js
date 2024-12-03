@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import PlayerForm from './Components/PlayerForm';
 import PlayerList from './Components/PlayerList';
 import GameBoard from './Components/GameBoard';
-import PlayerDashboard from './Components/PlayerDashboard';
 import './App.css';
 
 function App() {
@@ -11,12 +10,16 @@ function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [weeks] = useState(10);
   const [instructionsOpen, setInstructionsOpen] = useState(false);
-  const gameBoardRef = useRef(null); // Add a ref for GameBoard
+  const gameBoardRef = useRef(null);
   const [loading, setLoading] = useState(false);
 
   const addPlayer = (name, level) => {
     const handicap = calculateHandicap(level);
     setPlayers([...players, { name, level, handicap, turn: players.length + 1, position: 0, winner: false }]);
+  };
+
+  const removePlayer = (index) => {
+    setPlayers(players.filter((_, i) => i !== index));
   };
 
   const calculateHandicap = (level) => {
@@ -45,36 +48,15 @@ function App() {
   
     assignTurns();
     setGameStarted(true);
-    setLoading(true); // Set loading state to true
+    setLoading(true);
   
     if (gameBoardRef.current) {
-      gameBoardRef.current.pickScenario(); // Pick the first scenario
+      gameBoardRef.current.pickScenario();
     }
   
     setTimeout(() => {
-      setLoading(false); // Set loading state to false after a delay
-    }, 2000); // Adjust the delay as needed
-  };
-
-  const movePlayerForward = (index) => {
-    setPlayers(players.map((player, i) => {
-      if (i === index) {
-        const newPosition = player.position + 10;
-        const isWinner = newPosition >= 100;
-        return { ...player, position: newPosition, winner: isWinner };
-      }
-      return player;
-    }));
-  };
-
-  const movePlayerBackward = (index) => {
-    setPlayers(players.map((player, i) => {
-      if (i === index) {
-        const newPosition = Math.max(player.position - 10, 0);
-        return { ...player, position: newPosition };
-      }
-      return player;
-    }));
+      setLoading(false);
+    }, 2000);
   };
 
   const toggleInstructions = () => {
@@ -138,7 +120,6 @@ function App() {
                 ) : (
                   <>
                     <GameBoard ref={gameBoardRef} players={players} setPlayers={setPlayers} weeks={weeks} />
-                    <PlayerDashboard players={players} movePlayerForward={movePlayerForward} movePlayerBackward={movePlayerBackward} />
                   </>
                 )}
               </>
@@ -154,7 +135,7 @@ function App() {
             )}
             {!gameStarted && (
               <div className="player-list-container">
-                <PlayerList players={players} />
+                <PlayerList players={players} removePlayer={removePlayer} />
               </div>
             )}
           </div>

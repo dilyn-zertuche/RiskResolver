@@ -48,15 +48,35 @@ const GameBoard = forwardRef(({ players, setPlayers, weeks }, ref) => {
   };
 
   const spinNumber = () => {
-    const randomNum = Math.floor(Math.random() * 10) + 1;
-    setRandomNumber(randomNum);
-    if (randomNum > sliderValue) {
-      setResultColor('red');
-      movePlayerBackward(currentTurn - 1); // Move the current player backward
-    } else {
-      setResultColor('green');
-      movePlayerForward(currentTurn - 1); // Move the current player forward
+    const numberElement = document.querySelector('.random-number');
+    if (numberElement) {
+      numberElement.classList.add('rolling');
     }
+  
+    // Simulate the rolling animation by changing numbers rapidly
+    let rollInterval = setInterval(() => {
+      const randomNum = Math.floor(Math.random() * 10) + 1;
+      setRandomNumber(randomNum);
+    }, 100); // Change number every 100ms
+  
+    // Stop the rolling animation after 2 seconds
+    setTimeout(() => {
+      clearInterval(rollInterval);
+      const finalNumber = Math.floor(Math.random() * 10) + 1;
+      setRandomNumber(finalNumber);
+      if (finalNumber > sliderValue) {
+        setResultColor('red');
+        movePlayerBackward(currentTurn - 1); // Move the current player backward
+      } else {
+        setResultColor('green');
+        movePlayerForward(currentTurn - 1); // Move the current player forward
+      }
+  
+      // Remove the rolling class to stop the animation
+      if (numberElement) {
+        numberElement.classList.remove('rolling');
+      }
+    }, 2000); // Duration of the animation
   };
 
   const movePlayerForward = (index) => {
