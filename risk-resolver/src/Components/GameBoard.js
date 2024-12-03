@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useImperativeHandle, forwardRef, useEffect } from 'react';
 import './Component_Styling/GameBoard.css';
 import scenarios from '../scenarios';
 import surpriseList from '../surprises'; // Import your surprise events
 import SurprisePopup from './SurprisePopup'; // Import the SurprisePopup component
 
-function GameBoard({ players, weeks }) {
+const GameBoard = forwardRef(({ players, setPlayers, weeks }, ref) => {
   const [currentTurn, setCurrentTurn] = useState(1);
   const [currentScenario, setCurrentScenario] = useState('');
   const [sliderValue, setSliderValue] = useState(5);
@@ -16,10 +16,21 @@ function GameBoard({ players, weeks }) {
   const [playerChoices, setPlayerChoices] = useState({});
 
   const pickScenario = () => {
-    setCurrentScenario(scenarios[Math.floor(Math.random() * scenarios.length)]);
-  }
+    const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+    console.log('Picked scenario:', scenario); // Add logging
+    setCurrentScenario(scenario);
+  };
+
+  useImperativeHandle(ref, () => ({
+    pickScenario
+  }));
+
+  useEffect(() => {
+    pickScenario();
+  }, []);
 
   const nextRound = () => {
+    pickScenario();
     if (Math.random() < 0.25) { // 25% chance to trigger a surprise event
       const surprise = surpriseList[Math.floor(Math.random() * surpriseList.length)];
       setCurrentSurprise(surprise);
@@ -41,9 +52,32 @@ function GameBoard({ players, weeks }) {
     setRandomNumber(randomNum);
     if (randomNum > sliderValue) {
       setResultColor('red');
+      movePlayerBackward(currentTurn - 1); // Move the current player backward
     } else {
       setResultColor('green');
+      movePlayerForward(currentTurn - 1); // Move the current player forward
     }
+  };
+
+  const movePlayerForward = (index) => {
+    setPlayers(players.map((player, i) => {
+      if (i === index) {
+        const newPosition = player.position + 10;
+        const isWinner = newPosition >= 100;
+        return { ...player, position: newPosition, winner: isWinner };
+      }
+      return player;
+    }));
+  };
+
+  const movePlayerBackward = (index) => {
+    setPlayers(players.map((player, i) => {
+      if (i === index) {
+        const newPosition = Math.max(player.position - 10, 0);
+        return { ...player, position: newPosition };
+      }
+      return player;
+    }));
   };
 
   const handleChoiceChange = (player, choice) => {
@@ -99,7 +133,6 @@ function GameBoard({ players, weeks }) {
       />
       <div className="slider-value">Selected Value: {sliderValue}</div>
       <div className="button-group">
-        <button className="btn btn-primary spin-btn" onClick={pickScenario}>Scenario</button>
         <button className="btn btn-primary spin-btn" onClick={spinNumber}>Roll</button>
         <button className="btn btn-primary next-round-btn" onClick={nextRound}>Next Round</button>
       </div>
@@ -116,6 +149,6 @@ function GameBoard({ players, weeks }) {
       )}
     </div>
   );
-}
+});
 
 export default GameBoard;

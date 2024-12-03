@@ -1,0 +1,10 @@
+.playerListHeader {
+    color: black;
+    padding: 0px;
+    position: relative;
+    font-family: 'Playfair Display', serif; /* Apply the new font */
+  }
+
+  .playerListContent {
+    margin-top: 15px;
+  }

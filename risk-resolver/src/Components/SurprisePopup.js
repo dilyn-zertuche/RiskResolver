@@ -3,7 +3,7 @@ import './Component_Styling/SurprisePopup.css';
 
 const SurprisePopup = ({ surprise, players, onChoiceChange, onSubmit }) => {
   return (
-    <div className="popup">
+    <div className="popup popup-flash">
       <div className="popup-content">
         <h3>{surprise.event}</h3>
         <ul>
@@ -18,7 +18,7 @@ const SurprisePopup = ({ surprise, players, onChoiceChange, onSubmit }) => {
               <input
                 type="radio"
                 name={`choice-${player.name}`}
-                value="A"
+                value=" A"
                 onChange={() => onChoiceChange(player, 'A')}
               />
               A
@@ -27,7 +27,7 @@ const SurprisePopup = ({ surprise, players, onChoiceChange, onSubmit }) => {
               <input
                 type="radio"
                 name={`choice-${player.name}`}
-                value="B"
+                value=" B"
                 onChange={() => onChoiceChange(player, 'B')}
               />
               B
