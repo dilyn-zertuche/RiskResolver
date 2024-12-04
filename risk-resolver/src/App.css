@@ -117,6 +117,15 @@ button:focus {
   .gantt-bar {
     height: 20px;
   }
+
+  .instructions {
+    width: 100%;
+    left: -100%;
+  }
+
+  .instructions.open {
+    left: 0;
+  }
 }
 
 .instructionList {

@@ -56,7 +56,7 @@ function App() {
   
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 100);
   };
 
   const toggleInstructions = () => {
