@@ -82,19 +82,17 @@ function App() {
             <li>Add player name and select their respective level. This will impose a handicap on that player. If you wish to see the handicap, click the information
               icon to the right of the player's name.
             </li>
-            <li>Once all players are added, click the "Assign Turns" button to assign player order.</li>
             <li>Click "Start Game" to begin.</li>
           </ol>
           <h4>Gameplay</h4>
           <ol>
-            <li>The player who's turn it is will have their name colored green. Click "Scenario" to randomly draw the first risk management scenario.</li>
-            <li>The player will read the prompt and be given 30 seconds to give a response.</li>
+            <li>The player who's turn it is will have their name colored green.</li>
+            <li>The player will read the prompt and be given a short time to give a response.</li>
             <li>After the player gives their risk management strategy, the other players will attempt to point out flaws in the proposed solution.</li>
-            <li>After conversing, the likelihood of success will be chosen and the player will drag the slider to the correct number. Note that your handicap
+            <li>After conversing, the likelihood of success will be chosen by the group and the player will drag the slider to the corresponding number. Note that your handicap
               may limit the max success value that can be chosen.
             </li>
-            <li>The player will then click "Roll" to randomly choose a number between 1 and 10. If the number is green, the player will click the "Move Forward" button.
-              If the number is red, the player will click the "Move Backward" button.
+            <li>The player will then click "Roll" to randomly choose a number between 1 and 10. If the number is green, the player will move forward by one week. If the number is red, the player will move back by one week.
             </li>
             <li>The player will then click "Next Round" to start the next round.</li>
             <li>When a player reaches week 10, they have won the game.</li>
@@ -102,7 +100,7 @@ function App() {
           <h4>Surprise Events</h4>
           <ol>
             <li>Each round, a surprise event may be triggered. These will be shown by a popup that blocks gameplay.</li>
-            <li>The players will receive 30 seconds to read the prompt and choose their response A or B.</li>
+            <li>The players will receive a short time to read the prompt and choose their response A or B.</li>
             <li>Once all players have answered, the "Submit" button will be chosen. Players that chose the correct response will not move. Players that chose the incorrect response will go backward by one week.</li>
           </ol>
         </div>
