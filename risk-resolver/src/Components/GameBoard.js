@@ -122,51 +122,69 @@ const GameBoard = forwardRef(({ players, setPlayers, weeks }, ref) => {
   const maxSliderValue = 10 - (currentPlayer ? currentPlayer.handicap : 0);
 
   return (
-    <div className="game-board">
-      <div className="gantt-chart-container">
-        <div className="timeline">
-          {Array.from({ length: weeks }, (_, i) => (
-            <div key={i} className="timeline-week">Week {i + 1}</div>
-          ))}
-        </div>
-        <div className="gantt-chart">
-          {players.map((player, index) => (
-            <div key={index} className="gantt-row">
-              <div className={`player-name ${player.turn === currentTurn ? 'current-turn' : ''}`}>
-                {player.name}
-              </div>
-              <div className="gantt-bar-container">
-                <div className="gantt-bar" style={{ width: `${player.position}%` }}></div>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className="game-board-container">
+      <div className="instruction-box">
+        <h6><i><b>Reach Week 10 and Complete Your Project First</b></i></h6>
       </div>
-      {currentScenario && <div className="scenario">{currentScenario}</div>}
-      <input
-        type="range"
-        min="1"
-        max={maxSliderValue}
-        value={sliderValue}
-        onChange={handleSliderChange}
-        className="slider"
-      />
-      <div className="slider-value">Selected Value: {sliderValue}</div>
-      <div className="button-group">
-        <button className="btn btn-primary spin-btn" onClick={spinNumber}>Roll</button>
-        <button className="btn btn-primary next-round-btn" onClick={nextRound}>Next Round</button>
+      <div className="game-board">
+        <div className="gantt-chart-container">
+          <div className="timeline">
+            {Array.from({ length: weeks }, (_, i) => (
+              <div key={i} className="timeline-week">Week {i + 1}</div>
+            ))}
+          </div>
+          <div className="gantt-chart">
+            {players.map((player, index) => (
+              <div key={index} className="gantt-row">
+                <div className={`player-name ${player.turn === currentTurn ? 'current-turn' : ''}`}>
+                  {player.name}
+                </div>
+                <div className="gantt-bar-container">
+                  <div className="gantt-bar" style={{ width: `${player.position}%` }}></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="scenario-container">
+          <h3 className="scenario-header">Scenario:</h3>
+          {currentScenario && <div className="scenario">{currentScenario}</div>}
+        </div>
+        
+        <div className="slider-container">
+          <h3 className="slider-header">Success Likelihood</h3>
+          <input
+            type="range"
+            min="1"
+            max={maxSliderValue}
+            value={sliderValue}
+            onChange={handleSliderChange}
+            className="slider"
+          />
+          <div className="slider-labels">
+            <span>Not Likely to Succeed</span>
+            <div className="slider-value">{sliderValue}</div>
+            <span>Likely to Succeed</span>
+          </div>
+        </div>
+        
+        <div className="button-group">
+          <button className="btn btn-primary spin-btn" onClick={spinNumber}>Roll</button>
+          <button className="btn btn-primary next-round-btn" onClick={nextRound}>Next Round</button>
+        </div>
+        {randomNumber !== null && (
+          <div className={`random-number ${resultColor}`}>{randomNumber}</div>
+        )}
+        {showPopup && currentSurprise && (
+          <SurprisePopup
+            surprise={currentSurprise}
+            players={players}
+            onChoiceChange={handleChoiceChange}
+            onSubmit={handleSubmitChoices}
+          />
+        )}
       </div>
-      {randomNumber !== null && (
-        <div className={`random-number ${resultColor}`}>{randomNumber}</div>
-      )}
-      {showPopup && currentSurprise && (
-        <SurprisePopup
-          surprise={currentSurprise}
-          players={players}
-          onChoiceChange={handleChoiceChange}
-          onSubmit={handleSubmitChoices}
-        />
-      )}
     </div>
   );
 });

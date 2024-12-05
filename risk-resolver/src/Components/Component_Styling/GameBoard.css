@@ -12,12 +12,37 @@ body.dark-mode {
   color: #ffffff;
 }
 
+.game-board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.instruction-box {
+  background-color: #f0f0f0; /* Lighter color */
+  color: #333;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.instruction-box h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .game-board {
   background: linear-gradient(to right, #f9f9f9, #e0e0e0);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: background 0.3s;
+  width: 100%;
 }
 
 .game-board.dark-mode {
@@ -108,11 +133,43 @@ body.dark-mode {
   }
 }
 
-.scenario {
+.scenario-container {
   margin-top: 20px;
-  font-size: 16px;
+  text-align: center;
+}
+
+.scenario-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.scenario {
+  font-size: 18px;
   font-weight: bold;
   color: #333;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.scenario-container:hover .scenario {
+  background-color: #e0e0e0;
+  color: #007bff;
+}
+
+.slider-container {
+  margin: 20px 0;
+}
+
+.slider-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .slider {
@@ -163,10 +220,21 @@ body.dark-mode {
   transform: scale(1.2);
 }
 
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: 5px;
+  position: relative;
+}
+
 .slider-value {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .button-group {
